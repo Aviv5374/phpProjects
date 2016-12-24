@@ -11,4 +11,7 @@ echo "<br>";
 $arrayOfChosenIndexs['country2']="lol";
 print_r($arrayOfChosenIndexs);
 echo "<br>";
+
+$chosenIndex=mt_rand(0,9);
+echo $chosenIndex."<br>";
 ?>
