@@ -3,7 +3,7 @@ session_start();
 print_r($_SESSION);
 echo "<br>";
 //how I start a session/game? do in oder 1,2,3
-if (!empty($_SESSION) and isset($_SESSION['arrOfCountries']) and isset($_SESSION['LIndex']) and isset($_SESSION['arrOfChosenCountries']) and isset($_SESSION['turn'])) //check user answer3
+if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']) and isset($_SESSION['arrOfChosenCountries']) and isset($_SESSION['score']) ) //check user answer3
 {
 	//game...
 	/*if (!empty($_GET[])and isset ($_GET["my_answer"])) //?
@@ -17,15 +17,11 @@ if (!empty($_SESSION) and isset($_SESSION['arrOfCountries']) and isset($_SESSION
 } 
 else //reset set session2 
 {
-	
-	//$_SESSION['arrOfCountries']=$arrayOfCountries;
-	
-	//$_SESSION['LIndex']=$largesIndex;
-	
-	//$turn=0;
 	$_SESSION['turn']=0;
+	$_SESSION['answer']="";
+	$_SESSION['score']=0;
 
-//array that help to check the index chosen only ones
+//array that help to check the country chosen only ones
 $arrayOfChosenCountries = array('country1'=>"",'country2'=> "",'country3'=> "",'country4'=> "",'country5'=> "",'country6'=> "");
 	print_r($arrayOfChosenCountries);
 	echo "<br>";
@@ -88,10 +84,11 @@ else {
 		exit();//?
 	}
 	$_SESSION['arrOfChosenCountries']['country6']=$chosenCountry;
+}
 
 $shuffledCountry = str_shuffle(strtolower($chosenCountry));
 	echo $shuffledCountry."<br>";
-$answer="";
+
 print_r($_SESSION);
 	echo "<br>";
 //print_r($arrayOfChosenIndexs);
