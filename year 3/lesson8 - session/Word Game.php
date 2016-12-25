@@ -1,18 +1,16 @@
 <?php
 session_start();
-print_r($_SESSION);
-echo "<br>";
+
 define("MAXRUONDS", 6);
 //how I start a session/game? do in oder 1,2,3
-if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']) and isset($_SESSION['score']) and isset($_SESSION['chosenCountries']) ) //check user answer3
+if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']) and isset($_SESSION['score']) and isset($_SESSION['chosenCountry']) ) //check user answer3
 {
 	$_SESSION['turn']++;
-	$_SESSION['answer']=$_SESSION['chosenCountries'];
-	//game...
+	$_SESSION['answer']=$_SESSION['chosenCountry'];
 	
-	if (!empty($_GET[]) and isset($_GET['my_answer']))
+	if (!empty($_GET) and isset($_GET['my_answer']))
 	{
-		$_SESSION['chosenCountries']=strtolower($_SESSION['chosenCountries']);
+		$_SESSION['chosenCountry']=strtolower($_SESSION['chosenCountry']);
 		$_GET['my_answer'] = trim(strtolower($_GET['my_answer']));
 		if ($_SESSION['chosenCountry']==$_GET['my_answer']) {
 			$_SESSION['answer']="Correct Answer!";
@@ -20,7 +18,7 @@ if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']
 		}
 	} 
 	
-	if ($_SESSION['turn']=>MAXRUONDS) {
+	if ($_SESSION['turn'] >= MAXRUONDS) {
 		?>
 		<html>
 		<head>
@@ -51,10 +49,6 @@ else //reset set session2
 	$_SESSION['answer']="";
 	$_SESSION['score']=0;
 	$_SESSION['chosenCountry']="";
-
-
-	print_r($_SESSION);
-	echo "<br>";
 }
 // set quesion 1 need to finish 2 and 3
 //the origenal string
@@ -65,14 +59,10 @@ $arrayOfCountries= explode(",",$stringOfCountries);
 $largesIndex= count($arrayOfCountries)-1;
 //with $largesIndex finding a rndom index in array length
 $chosenIndex=mt_rand(0,$largesIndex);
-echo $chosenIndex."<br>";
-$_SESSION['chosenCountry'] = $arrayOfCountries[$chosenIndex];
-echo $_SESSION['chosenCountry']."<br>";
-$shuffledCountry = str_shuffle(strtolower($_SESSION['chosenCountry']));
-echo $shuffledCountry."<br>";
 
-print_r($_SESSION);
-echo "<br>";
+$_SESSION['chosenCountry'] = $arrayOfCountries[$chosenIndex];
+
+$shuffledCountry = str_shuffle(strtolower($_SESSION['chosenCountry']));
 
 //check style (css file) of html in php in the end
 ?>
