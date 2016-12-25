@@ -2,6 +2,7 @@
 session_start();
 print_r($_SESSION);
 echo "<br>";
+define("MAXRUONDS", 6);
 //how I start a session/game? do in oder 1,2,3
 if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']) and isset($_SESSION['score']) and isset($_SESSION['chosenCountries']) ) //check user answer3
 {
@@ -18,12 +19,28 @@ if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']
 			$_SESSION['score']++;
 		}
 	} 
-	else {
-		# code...
-	}
 	
-	if ($_SESSION['turn']=>6) {
-		//end game
+	if ($_SESSION['turn']=>MAXRUONDS) {
+		?>
+		<html>
+		<head>
+			<title>Word Game</title>
+		</head>
+		<body style="background: lightblue; margin: 30px;">
+			<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="GET" style= "background: white; border: 1px solid black; margin: 50 100 50 100; padding: 20 20 20 20; height: 250;
+				width: 500;">
+				<p id="answer" style="margin: 10 10 10 10;"><?php echo $_SESSION['answer']?></p>
+				<h1 id="score" style="color: blue; margin: 10 10 10 10;">Score: <?php echo $_SESSION['score']?>/ <?php echo MAXRUONDS?> </h1>
+				<input type="submit" value="New Session">
+			</form>
+		</body>
+		</html>
+		<?php
+		if (isset($_COOKIE[session_name()])) {
+			setcookie(session_name(),'',time()-86400,'/');
+		}
+		session_destroy();
+		exit();
 	}
 
 	
@@ -52,11 +69,11 @@ echo $chosenIndex."<br>";
 $_SESSION['chosenCountry'] = $arrayOfCountries[$chosenIndex];
 echo $_SESSION['chosenCountry']."<br>";
 $shuffledCountry = str_shuffle(strtolower($_SESSION['chosenCountry']));
-	echo $shuffledCountry."<br>";
+echo $shuffledCountry."<br>";
 
 print_r($_SESSION);
-	echo "<br>";
-//print_r($arrayOfChosenIndexs);
+echo "<br>";
+
 //check style (css file) of html in php in the end
 ?>
 
@@ -67,11 +84,11 @@ print_r($_SESSION);
 <body style="background: lightblue; margin: 30px;">
 
 	<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="GET" style= "background: white; border: 1px solid black; margin: 50 100 50 100; padding: 20 20 20 20; height: 250;
-	width: 500;">
-	<p id="answer" style="margin: 10 10 10 10;"><?php echo $_SESSION['answer']?></p>
-	<h1 id="quesion" style="color: blue; margin: 10 10 10 10;"><?php echo $shuffledCountry?></h1>
-	<input type="text" name="my_answer" required autofocus>
-		<input type="submit" value="Submit">
+		width: 500;">
+		<p id="answer" style="margin: 10 10 10 10;"><?php echo $_SESSION['answer']?></p>
+		<h1 id="quesion" style="color: blue; margin: 10 10 10 10;"><?php echo $shuffledCountry?></h1>
+		<input type="text" name="my_answer" required autofocus>
+		<input type="submit" value="Guess">
 	</form>
 </body>
 </html>
