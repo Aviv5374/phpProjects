@@ -9,9 +9,14 @@ if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']
 	$_SESSION['answer']=$_SESSION['chosenCountries'];
 	//game...
 	
-	if (!empty($_GET[]) and isset($_GET["my_answer"]))
+	if (!empty($_GET[]) and isset($_GET['my_answer']))
 	{
-		# code...
+		$_SESSION['chosenCountries']=strtolower($_SESSION['chosenCountries']);
+		$_GET['my_answer'] = trim(strtolower($_GET['my_answer']));
+		if ($_SESSION['chosenCountry']==$_GET['my_answer']) {
+			$_SESSION['answer']="Correct Answer!";
+			$_SESSION['score']++;
+		}
 	} 
 	else {
 		# code...
