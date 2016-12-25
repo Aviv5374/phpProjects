@@ -3,15 +3,13 @@ session_start();
 print_r($_SESSION);
 echo "<br>";
 //how I start a session/game? do in oder 1,2,3
-if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']) and isset($_SESSION['score']) and isset($_SESSION['arrOfChosenCountries']) ) //check user answer3
+if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']) and isset($_SESSION['score']) and isset($_SESSION['chosenCountries']) ) //check user answer3
 {
 	$_SESSION['turn']++;
+	$_SESSION['answer']=$_SESSION['chosenCountries'];
 	//game...
-	/*if ($_SESSION['turn']==x) {
-		$_SESSION['answer']=strtolower($_SESSION['arrOfChosenCountries']['countryX']);
-	}*/
-	// i need some thing simpler
-	if (!empty($_GET[]) and isset($_GET["my_answer"]))//work with answer
+	
+	if (!empty($_GET[]) and isset($_GET["my_answer"]))
 	{
 		# code...
 	} 
@@ -30,12 +28,7 @@ else //reset set session2
 	$_SESSION['turn']=0;
 	$_SESSION['answer']="";
 	$_SESSION['score']=0;
-
-//array that help to check the country chosen only ones
-$arrayOfChosenCountries = array('country1'=>"",'country2'=> "",'country3'=> "",'country4'=> "",'country5'=> "",'country6'=> "");
-	print_r($arrayOfChosenCountries);
-	echo "<br>";
-	$_SESSION['arrOfChosenCountries']=$arrayOfChosenCountries;
+	$_SESSION['chosenCountry']="";
 
 
 	print_r($_SESSION);
@@ -51,52 +44,9 @@ $largesIndex= count($arrayOfCountries)-1;
 //with $largesIndex finding a rndom index in array length
 $chosenIndex=mt_rand(0,$largesIndex);
 echo $chosenIndex."<br>";
-$chosenCountry = $arrayOfCountries[$chosenIndex];
-echo $chosenCountry."<br>";
-
-//check that country chosen only ones. Too complicated, find a better way
-if($_SESSION['arrOfChosenCountries']['country1']=="")
-{
-	$_SESSION['arrOfChosenCountries']['country1']=$chosenCountry;
-	
-}
-else if ($_SESSION['arrOfChosenCountries']['country2']=="") {
-	if($_SESSION['arrOfChosenCountries']['country1']==$chosenCountry){
-		header("Refresh:1;$_SERVER["PHP_SELF"]");// or ('location:Word Game');
-		exit();//?
-	}
-	$_SESSION['arrOfChosenCountries']['country2']=$chosenCountry;
-}
-else if ($_SESSION['arrOfChosenCountries']['country3']=="") {
-	if($_SESSION['arrOfChosenCountries']['country1']==$chosenCountry or $_SESSION['arrOfChosenCountries']['country2']==$chosenCountry ){
-		header("Refresh:1;$_SERVER["PHP_SELF"]");// or ('location:Word Game');
-		exit();//?
-	}
-	$_SESSION['arrOfChosenCountries']['country3']=$chosenCountry;
-} 
-else if ($_SESSION['arrOfChosenCountries']['country4']=="") {
-	if($_SESSION['arrOfChosenCountries']['country1']==$chosenCountryor or $_SESSION['arrOfChosenCountries']['country2']==$chosenCountryor or $_SESSION['arrOfChosenCountries']['country3']==$chosenCountry){
-		header("Refresh:1;$_SERVER["PHP_SELF"]");// or ('location:Word Game');
-		exit();//?
-	}
-	$_SESSION['arrOfChosenCountries']['country2']=$chosenCountry;
-}
-else if ($_SESSION['arrOfChosenCountries']['country5']=="") {
-	if($_SESSION['arrOfChosenCountries']['country1']==$chosenCountryor $_SESSION['arrOfChosenCountries']['country2']==$chosenCountryor or $_SESSION['arrOfChosenCountries']['country3']==$chosenCountry or $_SESSION['arrOfChosenCountries']['country4']==$chosenCountry){
-		header("Refresh:1;$_SERVER["PHP_SELF"]");// or ('location:Word Game');
-		exit();//?
-	}
-	$_SESSION['arrOfChosenCountries']['country5']=$chosenCountry;
-}   
-else {
-	if($_SESSION['arrOfChosenCountries']['country1']==$chosenCountryor $_SESSION['arrOfChosenCountries']['country2']==$chosenCountryor or $_SESSION['arrOfChosenCountries']['country3']==$chosenCountry or $_SESSION['arrOfChosenCountries']['country4']==$chosenCountry or $_SESSION['arrOfChosenCountries']['country5']==$chosenCountry){
-		header("Refresh:1;$_SERVER["PHP_SELF"]");// or ('location:Word Game');
-		exit();//?
-	}
-	$_SESSION['arrOfChosenCountries']['country6']=$chosenCountry;
-}
-
-$shuffledCountry = str_shuffle(strtolower($chosenCountry));
+$_SESSION['chosenCountry'] = $arrayOfCountries[$chosenIndex];
+echo $_SESSION['chosenCountry']."<br>";
+$shuffledCountry = str_shuffle(strtolower($_SESSION['chosenCountry']));
 	echo $shuffledCountry."<br>";
 
 print_r($_SESSION);

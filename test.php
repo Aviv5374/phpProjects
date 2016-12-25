@@ -14,4 +14,6 @@ echo "<br>";
 
 $chosenIndex=mt_rand(0,9);
 echo $chosenIndex."<br>";
+$shuffledCountry = str_shuffle("Israel");
+echo $shuffledCountry."<br>";
 ?>
