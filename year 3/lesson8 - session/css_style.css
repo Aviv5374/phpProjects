@@ -1,0 +1,23 @@
+body{
+	background: lightblue; 
+	margin: 30px;
+}
+form{
+    background: white; 
+    border: 1px solid black; 
+    margin: auto;  
+    height: 200;
+    width: 400;
+}
+p{
+  text-align: center;
+}
+h1{
+   text-align: center;
+}
+#user_answer{
+
+}
+#new_session{
+	
+}
