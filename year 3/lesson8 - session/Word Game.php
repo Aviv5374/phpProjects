@@ -27,7 +27,8 @@ if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']
 			<title>Word Game</title>
 			<link rel="stylesheet" type="text/css" href="css_style.css">
 		</head>
-		<body >
+		<body>
+			<div></div>
 			<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="GET">
 				<p id="answer"><?php echo $_SESSION['answer']?></p>
 				<h1 id="score">Score: <?php echo $_SESSION['score']?>/ <?php echo MAXRUONDS?> </h1>
@@ -74,7 +75,7 @@ $shuffledCountry = str_shuffle(strtolower($_SESSION['chosenCountry']));
 	<link rel="stylesheet" type="text/css" href="css_style.css">
 </head>
 <body>
-
+	<div></div>
 	<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="GET">
 		<p id="answer" ><?php echo $_SESSION['answer']?></p>
 		<h1 id="quesion" ><?php echo $shuffledCountry?></h1>
