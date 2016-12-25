@@ -5,7 +5,7 @@ define("MAXRUONDS", 6);
 
 if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']) and isset($_SESSION['score']) and isset($_SESSION['chosenCountry'])){
 	//beginig game
-	$_SESSION['turn']++; //
+	$_SESSION['turn']++;
 	$_SESSION['answer']=$_SESSION['chosenCountry'];
 	
 	if (!empty($_GET) and isset($_GET['my_answer']))
@@ -43,8 +43,6 @@ if (!empty($_SESSION) and isset($_SESSION['turn']) and isset($_SESSION['answer']
 		session_destroy();
 		exit();
 	}
-
-	
 } 
 else //reset session
 {
@@ -65,8 +63,6 @@ $chosenIndex=mt_rand(0,$largesIndex);
 
 $_SESSION['chosenCountry'] = $arrayOfCountries[$chosenIndex];
 $shuffledCountry = str_shuffle(strtolower($_SESSION['chosenCountry']));
-
-//check style (css file) of html in php in the end
 ?>
 
 <html>
