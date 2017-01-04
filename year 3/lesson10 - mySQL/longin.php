@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>hello php</title>
+	<title>In The Database</title>
 	<style>
 		fieldset{width:200px; high:100px; background:lightgreen;}
 	</style>
@@ -8,25 +8,25 @@
 <body>
 	<fieldset>
 		<?php
-
-		$user = array('shai' => 'aa123',
-			'aviv' => '7354',
-			'noa' => 'uuu');
+		include 'db.php';
+		
 		//unted if's and check
-		if (empty($_GET["username"]) OR empty($_GET["password"])){
-			header("Refresh:10;url=/www/year%203/lesson%203%20-%20login/long%20in.html");
+		if (empty($_POST["username"]) OR empty($_POST["password"])){
+			header("Location:login.html");
 			echo "Mssing Variables";
 			exit();
 		}
 
-		$inputUserName = $_GET["username"];
-		$inputPassword = $_GET["password"];
-		if (array_key_exists($inputUserName, $user) and $inputPassword === $user[$inputUserName]) {
+		$inputUserName = $_POST["username"];
+		$inputPassword = $_POST["password"];
+		$sql = "SELECT * from login WHERE USERNAME='$inputUserName' AND PASSWORD='$inputPassword'";
+		$res = mysqli_query($con,$sql);
+		if (mysqli_num_rows($res)==1) {
 			echo "Welcome ".$inputUserName."<br>";
 			echo "some classified informatiom";
 		}
 		else{
-			header("Refresh:10;url=/www/year%203/lesson%203%20-%20login/long%20in.html");
+			header("Location:login.html");
 			echo "Permission Denied";
 			exit();
 		}
