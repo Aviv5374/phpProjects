@@ -8,15 +8,14 @@ if (!empty($_GET) and isset($_GET["q"])) {
 
 	if ($quest != "") {
 		$quest = strtolower($quest);
-		//$len = strlen($quest);
-		//$sql = ?
-		foreach ($countries as $c) {
-			if (stristr($c,$quest)) {
-				$hint .="$c ";
+		$sql = "SELECT * from countries WHERE name LIKE '%$quest%'";
+		$res = mysqli_query($con,$sql);
+
+		while($row = mysqli_fetch_assoc($res)) {
+				$hint .= " " .$row['name']. " ";
 			}
 		}
 	}
-}
 
 echo $hint === "" ? "no suggestion" : $hint;
 

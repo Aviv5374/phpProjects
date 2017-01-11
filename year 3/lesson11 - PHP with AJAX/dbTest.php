@@ -1,14 +1,12 @@
 <?php
 include 'db.php';
-$sql = "INSERT INTO login VALUE (null, 'Doron10.5', '100'); ";
-$sql.= "INSERT INTO login VALUE (null, 'Doron11', '111'); ";
-$sql.= "INSERT INTO login VALUE (null, 'Doron12', '122');";
 
-if(mysqli_multi_query($con, $sql)){
-	echo "New User created successfully";
-}else{
-	echo "Error: " . mysqli_error($con);
-}
+$sql = "SELECT * from countries WHERE name LIKE '%i%' ";
+		$res = mysqli_query($con,$sql);
+
+		while($row = mysqli_fetch_assoc($res)) {
+				echo "<h2>cuontry: ".$row['name']."</h2>";
+			}
 
 mysqli_close($con);
 ?>
