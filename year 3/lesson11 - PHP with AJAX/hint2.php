@@ -9,7 +9,7 @@ if ($quest != "") {
 	$quest = strtolower($quest);
 	$len = strlen($quest);
 	foreach ($countries as $c) {
-		if (stristr($quest, substr($c,0,$len))) {
+		if (stristr($c,$quest)) {
 			$hint .="$c ";
 		}
 	}
