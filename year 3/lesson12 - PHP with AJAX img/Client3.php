@@ -14,7 +14,7 @@
 						document.getElementById("options").innerHTML = this.responseText;
 					}
 				};
-				xmlhttp.open("GET","hint2.php?q=" + str, true);
+				xmlhttp.open("GET","hint3.php?q=" + str, true);
 				xmlhttp.send();
 			}
 		}
