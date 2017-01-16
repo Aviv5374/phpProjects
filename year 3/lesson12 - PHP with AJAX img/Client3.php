@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hint2</title>
+	<title>Hint3</title>
 	<script>
 		function ajaxHint(str){
 			if(str.length == 0){
