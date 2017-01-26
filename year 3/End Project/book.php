@@ -1,6 +1,8 @@
 <?php
 include 'dbBook.php';
 
+$file_path = "upload/";
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +16,9 @@ include 'dbBook.php';
 	<fieldset>
 		<input type="file" name="fileToUpload">
 		<input type="text" name="title" value="" placeholder="Title">
-		<input type="submit" name="">
+		<input type="submit" name="Upload Image" name="submit">
+		<br>
+		<input type="submit" name="Logout" name="submit">
 	</fieldset>
 </form>
 </body>
