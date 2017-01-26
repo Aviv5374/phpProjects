@@ -1,7 +1,16 @@
 <?php
 include 'dbBook.php';
-
-$file_path = "upload/";
+$loguot = false;
+if (isset($_COOKIE[session_name()]) and $loguot === false;) {
+	$file_path = "upload/";
+}
+else{
+	header("refresh:3; url=index.php");
+	mysqli_close($con);
+	setcookie(session_name(),'',time()-86400,'/');
+	session_destroy();
+	exit();
+}
 
 ?>
 
@@ -18,7 +27,7 @@ $file_path = "upload/";
 		<input type="text" name="title" value="" placeholder="Title">
 		<input type="submit" name="Upload Image" name="submit">
 		<br>
-		<input type="submit" name="Logout" name="submit">
+		<input type="submit" name="Logout" name="submit" href="<?php echo $_SERVER['PHP_SELF'].'?logout=true'; ?>">
 	</fieldset>
 </form>
 </body>
