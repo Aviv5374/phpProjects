@@ -22,4 +22,5 @@ echo " _Israel <br>";
 echo trim(" _Israel ")."<br>";
 echo trim(strtolower(" 56 _ IsraEl "))."<br>";
 
+echo "stam"
 ?>
