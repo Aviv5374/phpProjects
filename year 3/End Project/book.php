@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 //$loguot = false;
-if (isset($_COOKIE[session_name()])){ //and $loguot===false) {
+if (!empty($_COOKIE[session_name()])){ //and $loguot===false) {
 	$file_path = "upload/";
 	echo "Hello world";
 }
