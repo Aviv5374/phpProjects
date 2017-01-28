@@ -1,14 +1,12 @@
 <?php
 include 'db.php';
-$loguot = false;
-if (isset($_COOKIE[session_name()]) and $loguot === false;) {
+//$loguot = false;
+if (isset($_COOKIE[session_name()])){ //and $loguot===false) {
 	$file_path = "upload/";
+	echo "Hello world";
 }
 else{
-	header("refresh:3; url=index.php");
-	mysqli_close($con);
-	setcookie(session_name(),'',time()-86400,'/');
-	session_destroy();
+	header("refresh:3; url=login.php");
 	exit();
 }
 
@@ -26,9 +24,9 @@ else{
 			Select image to upload:
 			<input type="file" name="fileToUpload">
 			<input type="text" name="title" value="" placeholder="Title">
-			<input type="submit" name="Upload Image" name="submit">
+			<input type="submit" value="Upload Image" name="submit">
 			<br>
-			<input type="submit" name="Logout" name="submit" href="<?php echo $_SERVER['PHP_SELF'].'$logout=true'; ?>">
+			<input type="submit" value="Logout" name="submit" href="<?php echo $_SERVER['PHP_SELF'].'$logout=true'; ?>">
 		</fieldset>
 	</form>
 </body>

@@ -13,7 +13,7 @@
 	</style>
 </head>
 <body>
-	<form method="POST" action="logon.php">
+<form method="GET" action="login.php">
 		<fieldset>
 			<input type="text" name="username" placeholder="Username" required autofocus=>
 			<input type="password" name="password" placeholder="Password" required>
