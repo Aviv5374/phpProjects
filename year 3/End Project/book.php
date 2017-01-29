@@ -13,13 +13,12 @@ if ($_SESSION['logout'] == False) {
 	$file_path = "upload/";
 	echo "Hello world";
 	?><br><?php
-	echo $logout;
 }
 else if ($_SESSION['logout'] == True) {
 	$_SESSION['logout'] == False;
 	$LogoutBook;
 }
-else if(){
+else if($LogoutBook){
 	header("refresh:3; url=login.php");
 	exit();
 }
