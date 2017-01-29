@@ -7,9 +7,6 @@ print_r($_SESSION);
 ?><br><?php
 echo "in Book";
 	?><br><?php
-/*$_SESSION['logout'] = False;
-print_r($_SESSION);
-?><br><?php*/
 
 if(empty($_SESSION) or isset($_POST['lol'])){
 	header("refresh:3; url=login.php");
