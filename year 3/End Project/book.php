@@ -5,23 +5,32 @@ echo "Hello world";
 	?><br><?php
 print_r($_SESSION);
 ?><br><?php
+echo "in Book";
+	?><br><?php
 /*$_SESSION['logout'] = False;
 print_r($_SESSION);
 ?><br><?php*/
 
-if ($_SESSION['logout'] == False) {
-	$file_path = "upload/";
-	echo "Hello world";
-	?><br><?php
-}
-else if ($_SESSION['logout'] == True) {
-	$_SESSION['logout'] == False;
-	$LogoutBook;
-}
-else if($LogoutBook){
+if(empty($_SESSION) or isset($_POST['lol'])){
 	header("refresh:3; url=login.php");
 	exit();
 }
+else if (!empty($_SESSION) and $_SESSION['logout'] == True) {
+	print_r($_SESSION);
+?><br><?php
+	$_SESSION['logout'] = False;
+	print_r($_SESSION);
+?><br><?php
+	echo "game on!2";
+	?><br><?php
+}
+else if (!empty($_SESSION) and $_SESSION['logout'] == False) {
+	$file_path = "upload/";
+	echo "game on!";
+	?><br><?php
+}
+
+
 
 ?>
 
@@ -38,9 +47,9 @@ else if($LogoutBook){
 			<input type="file" name="fileToUpload">
 			<input type="text" name="title" value="" placeholder="Title">
 			<input type="submit" value="Upload Image" name="Upload Image">
-			<br>
-			<input type="submit" value="<?php echo $LogoutBook=True;?> " name="Logout">
-		</fieldset>
+			<input type="hidden" name="lol" value="True">
+			<input type="submit" name="logout" value="logout">
+		</fieldset>		
 	</form>
 </body>
 </html>

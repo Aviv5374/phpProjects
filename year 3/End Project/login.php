@@ -2,6 +2,9 @@
 session_start();
 include 'db.php';
 print_r($_SESSION);
+?><br><?php
+echo "in login";
+?><br><?php
 
 if(empty($_SESSION) and isset($_POST['logout']) and $_POST['logout']==True)
 {
@@ -14,7 +17,7 @@ if(empty($_SESSION) and isset($_POST['logout']) and $_POST['logout']==True)
 	if (isset($_POST["username"]) and isset($_POST["password"])) {
 		$user = mysqli_real_escape_string($con,$_POST["username"]);
 		$pass = mysqli_real_escape_string($con,$_POST["password"]);
-		
+
 
 		$sql = "SELECT * from login WHERE username= '$user' and password= '$pass' ";
 		$res = mysqli_query($con,$sql);
