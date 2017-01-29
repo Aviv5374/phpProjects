@@ -9,13 +9,17 @@ print_r($_SESSION);
 print_r($_SESSION);
 ?><br><?php*/
 
-if ($_SESSION['logout'] === False) {
+if ($_SESSION['logout'] == False) {
 	$file_path = "upload/";
 	echo "Hello world";
 	?><br><?php
 	echo $logout;
 }
-else{
+else if ($_SESSION['logout'] == True) {
+	$_SESSION['logout'] == False;
+	$LogoutBook;
+}
+else if(){
 	header("refresh:3; url=login.php");
 	exit();
 }
@@ -36,7 +40,7 @@ else{
 			<input type="text" name="title" value="" placeholder="Title">
 			<input type="submit" value="Upload Image" name="Upload Image">
 			<br>
-			<input type="submit" value="Logout" name="Logout">
+			<input type="submit" value="<?php echo $LogoutBook=True;?> " name="Logout">
 		</fieldset>
 	</form>
 </body>

@@ -1,7 +1,6 @@
 <?php
 $logout = true;
 
-
 ?>
 
 <!DOCTYPE html>
