@@ -1,5 +1,5 @@
 <?php
-//$loguot = true;
+$logout = true;
 
 
 ?>
@@ -13,11 +13,11 @@
 	</style>
 </head>
 <body>
-<form method="GET" action="login.php">
+<form method="POST" action="login.php">
 		<fieldset>
 			<input type="text" name="username" placeholder="Username" required autofocus=>
 			<input type="password" name="password" placeholder="Password" required>
-			<input type="hidden" name="loguot" value="true">
+			<input type="hidden" name="logout" value="<?php echo $logout?>">
 			<input type="submit" name="submit" value="submit">
 		</fieldset>
 	</form>

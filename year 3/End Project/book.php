@@ -1,9 +1,19 @@
 <?php
+session_start();
 include 'db.php';
-//$loguot = false;
-if (!empty($_COOKIE[session_name()])){ //and $loguot===false) {
+echo "Hello world";
+	?><br><?php
+print_r($_SESSION);
+?><br><?php
+/*$_SESSION['logout'] = False;
+print_r($_SESSION);
+?><br><?php*/
+
+if ($_SESSION['logout'] === False) {
 	$file_path = "upload/";
 	echo "Hello world";
+	?><br><?php
+	echo $logout;
 }
 else{
 	header("refresh:3; url=login.php");
@@ -24,9 +34,9 @@ else{
 			Select image to upload:
 			<input type="file" name="fileToUpload">
 			<input type="text" name="title" value="" placeholder="Title">
-			<input type="submit" value="Upload Image" name="submit">
+			<input type="submit" value="Upload Image" name="Upload Image">
 			<br>
-			<input type="submit" value="Logout" name="submit" href="<?php echo $_SERVER['PHP_SELF'].'$logout=true'; ?>">
+			<input type="submit" value="Logout" name="Logout">
 		</fieldset>
 	</form>
 </body>
