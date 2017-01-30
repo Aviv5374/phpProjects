@@ -29,7 +29,6 @@ print_r($_SESSION);
 	echo "game on!2";
 	?><br><?php
 //--------
-	$file_path = "upload/";
 	echo "game on!";
 	?><br><?php
 ?>

@@ -2,13 +2,11 @@
 session_start();
 include 'db.php';
 
-
-if(empty($_SESSION) and isset($_POST['logout']) and $_POST['logout']==True)
+if(empty($_SESSION) and isset($_POST['login']) and $_POST['login']=="False")
 {
-	
-	$_SESSION['logout']=$_POST['logout'];
-	
 
+	$_SESSION['login']=True;
+	
 	if (isset($_POST["username"]) and isset($_POST["password"])) {
 		$user = mysqli_real_escape_string($con,$_POST["username"]);
 		$pass = mysqli_real_escape_string($con,$_POST["password"]);
