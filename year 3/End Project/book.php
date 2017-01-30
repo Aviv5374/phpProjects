@@ -5,14 +5,12 @@ include 'db.php';
 
 
 if(empty($_SESSION) or isset($_POST['logout'])){
-	header("refresh:3; url=login.php");
+	header("refresh:2; url=login.php");
 	echo "Goodbye";
 	exit();
 }
-else if (!empty($_SESSION) and isset($_SESSION['login']) and isset($_POST['UploadImage'])) {
+else if (isset($_POST['UploadImage'])) {
 	$file_path = "upload/";
-	echo "Hello world!!!";
-	?><br><?php
 }
 
 

@@ -2,11 +2,11 @@
 session_start();
 include 'db.php';
 
-if(empty($_SESSION) and isset($_POST['login']) and $_POST['login']=="False")
+if( empty($_SESSION) )
 {
 
 	$_SESSION['login']=True;
-	
+
 	if (isset($_POST["username"]) and isset($_POST["password"])) {
 		$user = mysqli_real_escape_string($con,$_POST["username"]);
 		$pass = mysqli_real_escape_string($con,$_POST["password"]);
@@ -17,7 +17,7 @@ if(empty($_SESSION) and isset($_POST['login']) and $_POST['login']=="False")
 
 		if(mysqli_num_rows($res)==1){
 			echo "Hello ".$user;
-			header("refresh:3; url=book.php");
+			header("refresh:1; url=book.php");
 			exit();
 		}
 		else{
@@ -30,20 +30,10 @@ if(empty($_SESSION) and isset($_POST['login']) and $_POST['login']=="False")
 }
 
 
-header("refresh:3; url=index.php");
+header("refresh:2; url=index.php");
 mysqli_close($con);
 setcookie(session_name(),'',time()-86400,'/');
 session_destroy();
 exit();
 
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login Checker</title>
-</head>
-<body>
-
-</body>
-</html>

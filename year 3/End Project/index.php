@@ -11,7 +11,6 @@
 		<fieldset>
 			<input type="text" name="username" placeholder="Username" required autofocus>
 			<input type="password" name="password" placeholder="Password" required>
-			<input type="hidden" name="login" value="False">
 			<input type="submit" name="submit" value="submit">
 		</fieldset>
 	</form>
