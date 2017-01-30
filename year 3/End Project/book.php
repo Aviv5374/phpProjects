@@ -1,30 +1,19 @@
 <?php
 session_start();
 include 'db.php';
-echo "Hello world";
-	?><br><?php
-print_r($_SESSION);
-?><br><?php
-echo "in Book";
-	?><br><?php
+
 
 if(empty($_SESSION) or isset($_POST['lol'])){
 	header("refresh:3; url=login.php");
 	exit();
 }
 else if (!empty($_SESSION) and $_SESSION['logout'] == True) {
-	print_r($_SESSION);
-?><br><?php
+	
 	$_SESSION['logout'] = False;
-	print_r($_SESSION);
-?><br><?php
-	echo "game on!2";
-	?><br><?php
+	
 }
 else if (!empty($_SESSION) and $_SESSION['logout'] == False) {
-	$file_path = "upload/";
-	echo "game on!";
-	?><br><?php
+	
 }
 
 

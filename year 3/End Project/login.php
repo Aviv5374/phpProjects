@@ -1,18 +1,13 @@
 <?php
 session_start();
 include 'db.php';
-print_r($_SESSION);
-?><br><?php
-echo "in login";
-?><br><?php
+
 
 if(empty($_SESSION) and isset($_POST['logout']) and $_POST['logout']==True)
 {
-	echo "Hello world!!!";
-	?><br><?php
+	
 	$_SESSION['logout']=$_POST['logout'];
-	print_r($_SESSION);
-	?><br><?php
+	
 
 	if (isset($_POST["username"]) and isset($_POST["password"])) {
 		$user = mysqli_real_escape_string($con,$_POST["username"]);
