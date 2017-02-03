@@ -11,15 +11,17 @@ if(empty($_SESSION) or isset($_POST['logout'])){
 	echo "Goodbye";
 	exit();
 }
-else if (isset($_POST['UploadImage']) and $_FILES['fileToUpload']) {
-	$file_path = "upload/";
+else if (isset($_POST['UploadImage']) and ) {
+	if (isset($_FILES['fileToUpload']) and isset($_POST['title'])) {
+		$file_path = "uploads/";
 
      if ($_FILES['fileToUpload']['size'] > 35*MEGABYTE) //check size
      {
-     	# code...
+     	header("refresh:2; url=$_SERVER['PHP_SELF']");
+     	echo "Your File is too Large";
+     	exit();
      }
 
-     $title = mysqli_real_escape_string($con,$_POST['title']);
 
      $file_path = $file_path . basename($_FILES['fileToUpload']['name']);
 
@@ -27,14 +29,19 @@ else if (isset($_POST['UploadImage']) and $_FILES['fileToUpload']) {
      $expensions = array("jpeg", "jpg", "png");
      if (!in_array($file_path, $expensions))// check  
      {
-	# code...
+     	header("refresh:2; url=$_SERVER['PHP_SELF']");
+     	echo "Sorry, Only JPEG/JPG/PNG Files are allowed";
+     	exit();     
      }
 
 	if (file_exists($file_path))// check if the file already exists
 	{
-		# code...
+		header("refresh:2; url=$_SERVER['PHP_SELF']");
+		echo "File already exists";
+		exit();
 	}
 
+	$title = mysqli_real_escape_string($con,$_POST['title']);
 
 	if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $file_path)){
 		$sql = "INSERT INTO book VALUE (null, '$file_path', 'title', null)";
@@ -46,6 +53,9 @@ else if (isset($_POST['UploadImage']) and $_FILES['fileToUpload']) {
 	else{
 		echo "fail";
 	}
+}
+else echo "Missing Variables";
+
 }
 
 
