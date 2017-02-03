@@ -13,9 +13,9 @@ if(empty($_SESSION) or isset($_POST['logout'])){
 }
 else if (isset($_POST['UploadImage'])) 
 {
-	if (isset($_FILES['fileToUpload']) and isset($_POST['title'])) 
+	if (isset($_FILES['fileToUpload']) and !empty($_POST['title'])) 
 	{
-       if ($_FILES['fileToUpload']['size'] > 100*MEGABYTE) //check size
+       if ($_FILES['fileToUpload']['size'] > 35*MEGABYTE) //check size
        {
        	header("refresh:2; url=".$_SERVER['PHP_SELF']."");
        	echo "Your File is too Large";
@@ -27,7 +27,7 @@ else if (isset($_POST['UploadImage']))
 
        $file_ext = pathinfo($file_path,PATHINFO_EXTENSION);
        $expensions = array("jpeg", "jpg", "png");
-       if (!in_array($file_path, $expensions))// check  
+       if (!in_array($file_ext, $expensions))// check  
        {
        	header("refresh:2; url=".$_SERVER['PHP_SELF']."");
        	echo "Sorry, Only JPEG/JPG/PNG Files are allowed";
@@ -62,11 +62,11 @@ else if (isset($_POST['UploadImage']))
 	   					NewImageDiv.setAttributeNode(att);
 
 	   					var NewImageSurce = document.createElement("img");
-	   					NewImageSurce.src = <?php echo $file_path ?>;
+	   					NewImageSurce.src = <?php echo "$file_path" ?>;
 	   					NewImageDiv.appendChild(NewImageSurce);
 
 	   					var NewImageTitel = document.createElement("p");
-	   					NewImageTitel.text = <?php echo $title ?>;
+	   					NewImageTitel.text = <?php echo "$title" ?>;
 	   					NewImageDiv.appendChild(NewImageTitel);
 
 	   					Book.appendChild(NewImageDiv);	
@@ -106,9 +106,9 @@ else if (isset($_POST['UploadImage']))
 					}
 				};
 				xmlhttp.open("POST","upload.php",true);
-				xmlhttp.send();*/
+				xmlhttp.send();
 
-			}
+			}*/
 		}
 	</script>
 </head>
