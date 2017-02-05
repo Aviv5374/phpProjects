@@ -103,7 +103,7 @@ else if (isset($_POST['UploadImage']))
 
 		}
 
-//ajaxHint();
+ajaxHint();
 
 	
 </script>
@@ -123,7 +123,7 @@ else if (isset($_POST['UploadImage']))
 		<div id="Book"></div>
 	</fieldset>
 	<script type="text/javascript">
-		ajaxHint();
+		//setInterval(ajaxHint,1000);
 	</script>	
 </body>
 </html>
