@@ -4,8 +4,10 @@ body{
 form{
 	background: lightblue;
 	width:200px;
+
 }
 .Image{
 	border-radius: 10px;
-	background: yellow;
+	padding: 5px,5px,5px,5px;
+
 }
