@@ -49,35 +49,6 @@ else if (isset($_POST['UploadImage']))
 	   	if (mysqli_query($con, $sql)) 
 	   	{
 	   		echo "success";
-	   		?>
-	   		<!DOCTYPE html>
-	   		<html>
-	   		<head>
-	   			<script type="text/javascript">
-	   				function CreateNewImageDiv() {
-	   					var Book = document.getElementById('Book');
-
-	   					var NewImageDiv = document.createElement("div");
-	   					var att = document.createAttribute("class");
-	   					att.value = "Image";
-	   					NewImageDiv.setAttributeNode(att);
-
-	   					var NewImageSurce = document.createElement("img");
-	   					NewImageSurce.setAttribute("src", "<?php echo $file_path ?>");
-	   					NewImageDiv.appendChild(NewImageSurce);
-
-	   					var NewImageTitel = document.createElement("p");
-	   					NewImageTitel.text = "<?php echo "$title" ?>";
-	   					NewImageDiv.appendChild(NewImageTitel);
-
-	   					Book.appendChild(NewImageDiv);	
-	   				}
-
-	   				CreateNewImageDiv();
-	   			</script>
-	   		</head>
-	   		</html>
-	   		<?php
 	   	}
 	   	else echo "SQL Fail";
 	   }
@@ -95,35 +66,59 @@ else if (isset($_POST['UploadImage']))
 	<title>Famliy Book</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript">
-		function ajaxHint(str) {
-			/*if (str.length == 0) {
-				//code...
-				return;
-			}else{
-				var xmlhttp = new XMLHttpRequest();
-				xmlhttp.onreadystatechange = function() {
-					if (this.readyState == 4 && this.status == 200) {
-						document.getElementById('')innerHTML = this.responseText;
-					}
-				};
-				xmlhttp.open("POST","upload.php",true);
-				xmlhttp.send();
+		
+		function CreateNewImageDiv() {
+			var Book = document.getElementById('Book');
 
-			}*/
+			var NewImageDiv = document.createElement("div");
+			var att = document.createAttribute("class");
+			att.value = "Image";
+			NewImageDiv.setAttributeNode(att);
+
+			var NewImageSurce = document.createElement("img");
+			NewImageSurce.setAttribute("src", "<?php echo $file_path ?>");
+			NewImageDiv.appendChild(NewImageSurce);
+
+			var NewImageTitel = document.createElement("p");
+			NewImageTitel.text = "<?php echo "$title" ?>";
+			NewImageDiv.appendChild(NewImageTitel);
+
+			Book.appendChild(NewImageDiv);	
 		}
-	</script>
+
+		function ajaxHint() {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					//document.getElementById('')innerHTML = this.responseText;
+					var NumberOfRuonds = this.responseText;
+					for (var i = 0; i <= NumberOfRuonds; i++) {
+						CreateNewImageDiv();
+					}
+				}
+			};
+			xmlhttp.open("POST","upload.php",true);
+			xmlhttp.send();
+
+		}
+	}
+
+ajaxHint();
+
+	
+</script>
 </head>
 <body>		
-	<fieldset>
-		<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST" enctype="multipart/form-data">
-
+	
+	<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST" enctype="multipart/form-data">
+		<fieldset>
 			Select image to upload:
 			<input type="file" name="fileToUpload">
 			<input type="text" name="title" value="" placeholder="Title">
 			<input type="submit" value="Upload Image" name="UploadImage">
 			<input type="submit" name="logout" value="Logout">
-		</form>	
-	</fieldset>
+		</fieldset>
+	</form>	
 	<fieldset>
 		<div id="Book">
 			<div class="Image">
