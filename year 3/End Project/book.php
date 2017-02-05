@@ -3,7 +3,7 @@ session_start();
 include 'db.php';
 define("KILOBYTE", 1000);
 define("MEGABYTE", (KILOBYTE*KILOBYTE));
-define("GIGABYTE", ("KILOBYTE"*"MEGABYTE"));
+define("GIGABYTE", (KILOBYTE*MEGABYTE));
 
 
 if(empty($_SESSION) or isset($_POST['logout'])){
@@ -44,7 +44,8 @@ else if (isset($_POST['UploadImage']))
 	   if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $file_path))
 	   {
 	   	$title = mysqli_real_escape_string($con,$_POST['title']);
-	   	$sql = "INSERT INTO book VALUE (null, '$file_path', 'title', null)";
+
+	   	$sql = "INSERT INTO book VALUE (null, '$file_path', '$title', null)";
 	   	if (mysqli_query($con, $sql)) 
 	   	{
 	   		echo "success";
@@ -62,11 +63,11 @@ else if (isset($_POST['UploadImage']))
 	   					NewImageDiv.setAttributeNode(att);
 
 	   					var NewImageSurce = document.createElement("img");
-	   					NewImageSurce.src = <?php echo "$file_path" ?>;
+	   					NewImageSurce.setAttribute("src", "<?php echo $file_path ?>");
 	   					NewImageDiv.appendChild(NewImageSurce);
 
 	   					var NewImageTitel = document.createElement("p");
-	   					NewImageTitel.text = <?php echo "$title" ?>;
+	   					NewImageTitel.text = "<?php echo "$title" ?>";
 	   					NewImageDiv.appendChild(NewImageTitel);
 
 	   					Book.appendChild(NewImageDiv);	
