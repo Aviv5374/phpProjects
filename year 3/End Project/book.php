@@ -67,20 +67,19 @@ else if (isset($_POST['UploadImage']))
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript">
 		
-		function CreateNewImageDiv() {
-			var Book = document.getElementById('Book');
-
+		function CreateNewImageDiv(Book,itemArray) {
 			var NewImageDiv = document.createElement("div");
 			var att = document.createAttribute("class");
 			att.value = "Image";
 			NewImageDiv.setAttributeNode(att);
 
 			var NewImageSurce = document.createElement("img");
-			NewImageSurce.setAttribute("src", "<?php echo $file_path ?>");
+			NewImageSurce.setAttribute("src", ""+itemArray[0]+"");
 			NewImageDiv.appendChild(NewImageSurce);
 
 			var NewImageTitel = document.createElement("p");
-			NewImageTitel.text = "<?php echo "$title" ?>";
+			NewImageTitel.setAttribute("class", "title");
+			NewImageTitel.text = toString(itemArray[1]);
 			NewImageDiv.appendChild(NewImageTitel);
 
 			Book.appendChild(NewImageDiv);	
@@ -90,10 +89,12 @@ else if (isset($_POST['UploadImage']))
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					//document.getElementById('')innerHTML = this.responseText;
-					var NumberOfRuonds = this.responseText;
-					for (var i = 0; i <= NumberOfRuonds; i++) {
-						CreateNewImageDiv();
+					var Book = document.getElementById('Book');
+					Book.innerHTML="";
+					var dataArray = this.responseText.split("||");
+					for (var i = 0; i <= dataArray.length; i++) {
+						var itemArray = dataArray[i].split("|");
+						CreateNewImageDiv(Book,itemArray);
 					}
 				}
 			};
