@@ -3,15 +3,14 @@ include 'db.php';
 
 $dataString = "";
 
-//$quest = strtolower($quest);
-		$sql = "SELECT * from book";
-		$res = mysqli_query($con,$sql);
+$sql = "SELECT * from book";
+$res = mysqli_query($con,$sql);
 
-		while($row = mysqli_fetch_assoc($res)) {
-				$dataString .= $row['path']. "|" .$row['title']."||";
-			}
+while($row = mysqli_fetch_assoc($res)) {
+	$dataString .= $row['path']. "|" .$row['title']."||";
+}
 
 echo $dataString;
-	exit();
+exit();
 
 ?>

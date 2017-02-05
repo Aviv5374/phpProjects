@@ -79,7 +79,7 @@ else if (isset($_POST['UploadImage']))
 
 			var NewImageTitel = document.createElement("p");
 			NewImageTitel.setAttribute("class", "title");
-			NewImageTitel.text = toString(itemArray[1]);
+			NewImageTitel.innerText = ""+itemArray[1]+"";
 			NewImageDiv.appendChild(NewImageTitel);
 
 			Book.appendChild(NewImageDiv);	
@@ -102,9 +102,8 @@ else if (isset($_POST['UploadImage']))
 			xmlhttp.send();
 
 		}
-	}
 
-ajaxHint();
+//ajaxHint();
 
 	
 </script>
@@ -121,12 +120,10 @@ ajaxHint();
 		</fieldset>
 	</form>	
 	<fieldset>
-		<div id="Book">
-			<div class="Image">
-				<img src="">  
-				<p class="title"></p>	
-			</div>
-		</div>
-	</fieldset>	
+		<div id="Book"></div>
+	</fieldset>
+	<script type="text/javascript">
+		ajaxHint();
+	</script>	
 </body>
 </html>
