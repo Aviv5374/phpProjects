@@ -92,7 +92,7 @@ else if (isset($_POST['UploadImage']))
 					var Book = document.getElementById('Book');
 					Book.innerHTML="";
 					var dataArray = this.responseText.split("||");
-					for (var i = 0; i <= dataArray.length; i++) {
+					for (var i = 0; i < dataArray.length-1; i++) {
 						var itemArray = dataArray[i].split("|");
 						CreateNewImageDiv(Book,itemArray);
 					}
