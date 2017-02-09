@@ -117,7 +117,7 @@ ajaxHint();
 			<input type="submit" value="Upload Image" name="UploadImage">
 			<input type="submit" name="logout" value="Logout">
 	</form>	
-<div id="space"></div>
+	
 		<div id="Book"></div>
 
 	<script type="text/javascript">

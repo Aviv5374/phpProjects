@@ -3,14 +3,19 @@
 ?>
 body{
 	background: royalblue;
+    display: -webkit-inline-box;
 }
 form{
 	background: lightblue;
 	width: 200px;
-    margin: auto;
     height: 500px;
-    display: table-cell;
-
+    margin: initial;
+    padding: 2px;
+}
+input{
+    margin-top: 1px;
+    margin-buttom: 1px;
+    display: list-item;
 }
 #space{
     border: 4px solid black;
@@ -20,19 +25,25 @@ form{
 
 #Book{
     border: 4px solid black;
-    display: table-cell;
     padding: 4px;
+    margin: inherit;
 }
 
 .Image{
-	border-radius: 10px;
+    border-radius: 10px;
     padding: 5px;
     border: 2px solid black;
     background: white;
     width: 300px;
     height: 300px;
     margin: 5px;
+    display: inline-block;
 
+}
+
+img{
+    width: 250px;
+    height: 200px;
 }
 
 .titel{
