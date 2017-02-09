@@ -4,18 +4,26 @@
 body{
 	background: royalblue;
     display: -webkit-inline-box;
+    margin-left: 0px;
+    margin-top: 0px;
 }
 form{
+    border-left: 4px solid black;
 	background: lightblue;
-	width: 200px;
-    height: 500px;
-    margin: initial;
-    padding: 2px;
+	width: 215px;
+    height: 1000px;
+    padding: 4px;
 }
 input{
-    margin-top: 1px;
-    margin-buttom: 1px;
-    display: list-item;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: inherit;
+}
+#fileToUpload{
+        margin-top: 12px;
+    margin-bottom: 0px;
 }
 #space{
     border: 4px solid black;
@@ -24,7 +32,6 @@ input{
 }
 
 #Book{
-    border: 4px solid black;
     padding: 4px;
     margin: inherit;
 }

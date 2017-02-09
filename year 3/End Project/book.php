@@ -4,7 +4,7 @@ include 'db.php';
 define("KILOBYTE", 1000);
 define("MEGABYTE", (KILOBYTE*KILOBYTE));
 define("GIGABYTE", (KILOBYTE*MEGABYTE));
-
+$uploadStutose="";
 
 if(empty($_SESSION) or isset($_POST['logout'])){
 	header("refresh:2; url=login.php");
@@ -48,13 +48,13 @@ else if (isset($_POST['UploadImage']))
 	   	$sql = "INSERT INTO book VALUE (null, '$file_path', '$title', null)";
 	   	if (mysqli_query($con, $sql)) 
 	   	{
-	   		echo "success";
+	   		$uploadStutose="success";
 	   	}
-	   	else echo "SQL Fail";
+	   	else $uploadStutose="SQL Fail";
 	   }
-	   else echo "fail"; 
+	   else $uploadStutose="fail"; 
 	}
-	else echo "Missing Variables";
+	else $uploadStutose="Missing Variables";
 }
 
 ?>
@@ -112,12 +112,13 @@ ajaxHint();
 	
 	<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST" enctype="multipart/form-data">
 			Select image to upload:
-			<input type="file" name="fileToUpload">
+			<p id="uploadStutose"><?php echo "$uploadStutose";?></p>
+			<input id="fileToUpload" type="file" name="fileToUpload">
 			<input type="text" name="title" value="" placeholder="Title">
 			<input type="submit" value="Upload Image" name="UploadImage">
 			<input type="submit" name="logout" value="Logout">
 	</form>	
-	
+
 		<div id="Book"></div>
 
 	<script type="text/javascript">
