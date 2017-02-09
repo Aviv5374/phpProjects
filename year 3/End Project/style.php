@@ -8,7 +8,7 @@ body{
     margin-top: 0px;
 }
 form{
-    border-left: 4px solid black;
+    border-right: 4px solid black;
 	background: lightblue;
 	width: 215px;
     height: 1000px;
@@ -34,6 +34,8 @@ input{
 #Book{
     padding: 4px;
     margin: inherit;
+    height: 1200px;
+    width: 1500px;
 }
 
 .Image{
@@ -43,7 +45,7 @@ input{
     background: white;
     width: 300px;
     height: 300px;
-    margin: 5px;
+    margin: 20px;
     display: inline-block;
 
 }
@@ -51,9 +53,10 @@ input{
 img{
     width: 250px;
     height: 200px;
+    margin: inherit;
 }
 
-.titel{
+.title{
 	font-size: 20px;
     text-align: center;
 }
