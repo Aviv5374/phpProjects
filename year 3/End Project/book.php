@@ -64,7 +64,7 @@ else if (isset($_POST['UploadImage']))
 <html>
 <head>
 	<title>Famliy Book</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="style.php">
 	<script type="text/javascript">
 		
 		function CreateNewImageDiv(Book,itemArray) {
@@ -111,17 +111,15 @@ ajaxHint();
 <body>		
 	
 	<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST" enctype="multipart/form-data">
-		<fieldset>
 			Select image to upload:
 			<input type="file" name="fileToUpload">
 			<input type="text" name="title" value="" placeholder="Title">
 			<input type="submit" value="Upload Image" name="UploadImage">
 			<input type="submit" name="logout" value="Logout">
-		</fieldset>
 	</form>	
-	<fieldset>
+<div id="space"></div>
 		<div id="Book"></div>
-	</fieldset>
+
 	<script type="text/javascript">
 		//setInterval(ajaxHint,1000);
 	</script>	
