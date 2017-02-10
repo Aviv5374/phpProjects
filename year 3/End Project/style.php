@@ -4,14 +4,13 @@
 body{
 	background: royalblue;
     display: -webkit-inline-box;
-    margin-left: 0px;
-    margin-top: 0px;
+    margin: 0px;
 }
 form{
     border-right: 4px solid black;
 	background: lightblue;
 	width: 215px;
-    height: 1000px;
+    height: auto;
     padding: 4px;
 }
 input{
@@ -34,7 +33,7 @@ input{
 #Book{
     padding: 4px;
     margin: inherit;
-    height: 1200px;
+    height: auto;
     width: 1500px;
 }
 
