@@ -69,9 +69,7 @@ else if (isset($_POST['UploadImage']))
 		
 		function CreateNewImageDiv(Book,itemArray) {
 			var NewImageDiv = document.createElement("div");
-			var att = document.createAttribute("class");
-			att.value = "Image";
-			NewImageDiv.setAttributeNode(att);
+			NewImageDiv.setAttribute("class", "Image");
 
 			var NewImageSurce = document.createElement("img");
 			NewImageSurce.setAttribute("src", ""+itemArray[0]+"");
@@ -89,7 +87,7 @@ else if (isset($_POST['UploadImage']))
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					var Book = document.getElementById('Book');
+					var Book = document.getElementById("Book");
 					Book.innerHTML="";
 					var dataArray = this.responseText.split("||");
 					for (var i = 0; i < dataArray.length-1; i++) {
@@ -103,7 +101,7 @@ else if (isset($_POST['UploadImage']))
 
 		}
 
-ajaxHint();
+//ajaxHint();
 
 	
 </script>
@@ -122,7 +120,7 @@ ajaxHint();
 		<div id="Book"></div>
 
 	<script type="text/javascript">
-		//setInterval(ajaxHint,1000);
+		setInterval(ajaxHint,1000);
 	</script>	
 </body>
 </html>

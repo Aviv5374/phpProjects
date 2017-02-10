@@ -11,6 +11,7 @@ form{
 	background: lightblue;
 	width: 215px;
     height: auto;
+    min-height: 1000px;
     padding: 4px;
 }
 input{
@@ -34,6 +35,7 @@ input{
     padding: 4px;
     margin: inherit;
     height: auto;
+    min-height: 1000px;
     width: 1500px;
 }
 
