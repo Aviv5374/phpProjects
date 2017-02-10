@@ -5,7 +5,7 @@ include 'db.php';
 if( empty($_SESSION) )
 {
 
-	$_SESSION['login']=True;
+	$_SESSION["login"]=True;
 
 	if (isset($_POST["username"]) and isset($_POST["password"])) {
 		$user = mysqli_real_escape_string($con,$_POST["username"]);
