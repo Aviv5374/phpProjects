@@ -17,8 +17,8 @@ else if (isset($_POST['UploadImage']))
 	{
        if ($_FILES['fileToUpload']['size'] > 35*MEGABYTE) //check size
        {
-       	header("refresh:2; url=".$_SERVER['PHP_SELF']."");
-       	echo "Your File is too Large";
+       	header("refresh:1; url=".$_SERVER['PHP_SELF']."");
+       	$_SESSION["strTemp"]="Your File is too Large";
        	exit();
        }
 
@@ -29,21 +29,24 @@ else if (isset($_POST['UploadImage']))
        $expensions = array("jpeg", "jpg", "png");
        if (!in_array($file_ext, $expensions))// check  
        {
-       	header("refresh:2; url=".$_SERVER['PHP_SELF']."");
-       	echo "Sorry, Only JPEG/JPG/PNG Files are allowed";
+       	header("refresh:1; url=".$_SERVER['PHP_SELF']."");
+       	$_SESSION["strTemp"]="Sorry, Only JPEG/JPG/PNG Files are allowed";
        	exit();     
        }
 
-	   if (file_exists($file_path))// check if the file already exists
+       $title = mysqli_real_escape_string($con,$_POST['title']);
+       $sql = "SELECT title FROM book WHERE title='$title'";
+       $res = mysqli_query($con,$sql);
+	   if (file_exists($file_path) or mysqli_num_rows($res)==1)// check if the file already exists
 	   {
-	   	header("refresh:2; url=".$_SERVER['PHP_SELF']."");
-	   	echo "File already exists";
+	   	header("refresh:1; url=".$_SERVER['PHP_SELF']."");
+	   	$_SESSION["strTemp"]="File already exists";
 	   	exit();
 	   }
 
 	   if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $file_path))
 	   {
-	   	$title = mysqli_real_escape_string($con,$_POST['title']);
+	   	
 
 	   	$sql = "INSERT INTO book VALUE (null, '$file_path', '$title', null)";
 	   	if (mysqli_query($con, $sql)) 
@@ -56,6 +59,11 @@ else if (isset($_POST['UploadImage']))
 	}
 	else $uploadStutose="Missing Variables";
 }
+
+if ($uploadStutose=="" and $_SESSION["strTemp"]!="") {
+		$uploadStutose=$_SESSION["strTemp"];
+		$_SESSION["strTemp"]="";
+	}
 
 ?>
 
@@ -103,21 +111,21 @@ else if (isset($_POST['UploadImage']))
 
 //ajaxHint();
 
-	
+
 </script>
 </head>
 <body>		
 	
 	<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST" enctype="multipart/form-data">
-			Select image to upload:
-			<p id="uploadStutose"><?php echo "$uploadStutose";?></p>
-			<input id="fileToUpload" type="file" name="fileToUpload">
-			<input type="text" name="title" value="" placeholder="Title">
-			<input type="submit" value="Upload Image" name="UploadImage">
-			<input type="submit" name="logout" value="Logout">
+		Select image to upload:
+		<p id="uploadStutose"><?php echo "$uploadStutose";?></p>
+		<input id="fileToUpload" type="file" name="fileToUpload">
+		<input type="text" name="title" value="" placeholder="Title">
+		<input type="submit" value="Upload Image" name="UploadImage">
+		<input type="submit" name="logout" value="Logout">
 	</form>	
 
-		<div id="Book"></div>
+	<div id="Book"></div>
 
 	<script type="text/javascript">
 		setInterval(ajaxHint,1000);
